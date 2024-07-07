@@ -1,13 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { BsCart } from "react-icons/bs";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import ProductDrawer from "./ProductDrawer";
 
 const Navbar = () => {
-  const { cartQuantity, isOpen, openCart } = useShoppingCart();
+  const { cartQuantity, openCart } = useShoppingCart();
 
   return (
-    <div className="navbar sticky z-50 top-0 bg-base-100 mt-4 shadow-sm">
+    <div className="navbar sticky z-20 top-0 bg-base-100 mt-4 shadow-sm">
       <div className="flex-1">
         <ul className="flex gap-8 px-1">
           <li>
@@ -42,16 +41,18 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="mr-10">
-        <div className="indicator">
-          <span className="indicator-item badge badge-secondary">
-            {cartQuantity}
-          </span>
-          <button className="btn btn-circle btn-ghost">
-            <BsCart onClick={openCart}  className="w-[1.2rem] h-[1.2rem]" />
-          </button>
+      {cartQuantity !== 0 && (
+        <div className="mr-10">
+          <div className="indicator">
+            <span className="indicator-item badge badge-secondary">
+              {cartQuantity}
+            </span>
+            <button className="btn btn-circle btn-ghost">
+              <BsCart onClick={openCart} className="w-[1.2rem] h-[1.2rem]" />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

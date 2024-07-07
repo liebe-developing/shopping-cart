@@ -1,7 +1,5 @@
 const About = () => {
-  return (
-    <div>About</div>
-  )
-}
+  return <div className="px-3 py-5 w-full h-screen">About</div>;
+};
 
-export default About
+export default About;
