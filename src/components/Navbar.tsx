@@ -1,12 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { BsCart } from "react-icons/bs";
 import { useShoppingCart } from "../context/ShoppingCartContext";
+import ProductDrawer from "./ProductDrawer";
 
 const Navbar = () => {
-  const { cartQuantity, openCart } = useShoppingCart();
+  const { cartQuantity, isOpen, openCart } = useShoppingCart();
 
   return (
-    <div className="navbar bg-base-100 mt-2 shadow-sm">
+    <div className="navbar sticky z-50 top-0 bg-base-100 mt-4 shadow-sm">
       <div className="flex-1">
         <ul className="flex gap-8 px-1">
           <li>
@@ -47,7 +48,7 @@ const Navbar = () => {
             {cartQuantity}
           </span>
           <button className="btn btn-circle btn-ghost">
-            <BsCart className="w-[1.5rem] h-[1.5rem]" />
+            <BsCart onClick={openCart}  className="w-[1.2rem] h-[1.2rem]" />
           </button>
         </div>
       </div>

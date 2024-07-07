@@ -7,9 +7,16 @@ type ProductCardProps = {
   name: string;
   price: number;
   imgUrl: string;
+  description: string;
 };
 
-const ProductCard = ({ id, name, price, imgUrl }: ProductCardProps) => {
+const ProductCard = ({
+  id,
+  name,
+  description,
+  price,
+  imgUrl,
+}: ProductCardProps) => {
   const {
     getItemQuantity,
     increaseCartQuantity,
@@ -20,7 +27,7 @@ const ProductCard = ({ id, name, price, imgUrl }: ProductCardProps) => {
   const quantity = getItemQuantity(id);
 
   return (
-    <div className="card card-compact bg-base-100 w-96 shadow-xl">
+    <div className="card h-[388px] card-compact w-96 bg-base-100 shadow-xl">
       <figure>
         <img
           src={imgUrl}
@@ -33,16 +40,17 @@ const ProductCard = ({ id, name, price, imgUrl }: ProductCardProps) => {
           <h2 className="card-title">{name}</h2>
           <h3 className="ml-2 text-gray-600">{formatCurrency(price)}</h3>
         </div>
+        <p className="text-gray-600 text-[16px] mt-2">{description}</p>
         {quantity === 0 ? (
-          <button className="btn btn-primary mt-3  w-full">
-            <IoIosAdd
-              onClick={() => increaseCartQuantity(id)}
-              className="text-white w-[1.8rem] h-[1.8rem]"
-            />
+          <button
+            className="btn btn-primary mt-auto w-full"
+            onClick={() => increaseCartQuantity(id)}
+          >
+            <IoIosAdd className="text-white w-[1.8rem] h-[1.8rem]" />
             Add To Cart
           </button>
         ) : (
-          <div className="flex flex-col items-center justify-center gap-2 mt-3">
+          <div className="flex items-center justify-between gap-2 mt-3">
             <div className="flex items-center justify-center gap-2">
               <button
                 className="btn btn-primary"
@@ -51,8 +59,7 @@ const ProductCard = ({ id, name, price, imgUrl }: ProductCardProps) => {
                 -
               </button>
               <div className="text-xl">
-                <span>{quantity} </span>
-                in cart
+                <span>{quantity}</span> in cart
               </div>
               <button
                 className="btn btn-primary"
